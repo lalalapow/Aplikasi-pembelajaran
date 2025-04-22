@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Pembelajaran Fisika - Kecepatan dan Percepatan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Aplikasi Pembelajaran Fisika</h1>
+        <nav>
+            <ul>
+                <li><a href="#teori">Teori Dasar</a></li>
+                <li><a href="#simulasi">Simulasi Interaktif</a></li>
+                <li><a href="#latihan">Latihan Soal</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="teori" class="section">
+            <h2>Teori Dasar Kecepatan dan Percepatan</h2>
+            
+            <div class="content-box">
+                <h3>Perpindahan dan Jarak</h3>
+                <p><strong>Perpindahan</strong> adalah perubahan kedudukan benda terhadap titik asalnya setelah menempuh jarak tertentu. Perpindahan merupakan besaran vektor karena memiliki nilai dan arah.</p>
+                <p><strong>Jarak</strong> adalah panjang lintasan sesungguhnya yang ditempuh oleh suatu benda selama waktu tertentu. Jarak merupakan besaran skalar.</p>
+            </div>
+            
+            <div class="content-box">
+                <h3>Kecepatan Rata-rata</h3>
+                <p>Kecepatan rata-rata didefinisikan sebagai perubahan kedudukan atau perpindahan dibagi selang waktu tempuh yang dapat dinyatakan dalam persamaan berikut:</p>
+                <div class="formula">
+                    \( \bar{v} = \frac{\Delta x}{\Delta t} = \frac{x_2 - x_1}{t_2 - t_1} \)
+                </div>
+                <p>Dimana:</p>
+                <ul>
+                    <li>\( \bar{v} \) adalah kecepatan rata-rata</li>
+                    <li>\( \Delta x \) adalah perpindahan</li>
+                    <li>\( \Delta t \) adalah selang waktu</li>
+                    <li>\( x_1 \) dan \( x_2 \) adalah posisi awal dan akhir</li>
+                    <li>\( t_1 \) dan \( t_2 \) adalah waktu awal dan akhir</li>
+                </ul>
+            </div>
+            
+            <div class="content-box">
+                <h3>Percepatan</h3>
+                <p>Percepatan merupakan besaran vektor dan didefinisikan sebagai perubahan kecepatan benda dalam selang waktu tertentu. Percepatan rata-rata didefinisikan sebagai perubahan kecepatan benda dibagi dengan waktu yang dibutuhkan untuk perubahan tersebut. Secara matematis ditulis sebagai berikut:</p>
+                <div class="formula">
+                    \( \bar{a} = \frac{\Delta v}{\Delta t} = \frac{v_2 - v_1}{t_2 - t_1} \)
+                </div>
+                <p>Dimana:</p>
+                <ul>
+                    <li>\( \bar{a} \) adalah percepatan rata-rata</li>
+                    <li>\( \Delta v \) adalah perubahan kecepatan</li>
+                    <li>\( \Delta t \) adalah selang waktu</li>
+                    <li>\( v_1 \) dan \( v_2 \) adalah kecepatan awal dan akhir</li>
+                    <li>\( t_1 \) dan \( t_2 \) adalah waktu awal dan akhir</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="simulasi" class="section">
+            <h2>Simulasi Interaktif</h2>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'tab1')">Kecepatan Rata-rata</button>
+                <button class="tab-button" onclick="openTab(event, 'tab2')">Kecepatan dan Percepatan</button>
+            </div>
+            
+            <div id="tab1" class="tab-content active">
+                <h3>Percobaan Kecepatan Rata-rata</h3>
+                <p>Simulasi ini menunjukkan percobaan untuk menentukan kecepatan rata-rata kereta pada rel dengan tingkat kemiringan yang berbeda.</p>
+                
+                <div class="simulation-container">
+                    <canvas id="simulation-canvas1" width="700" height="400"></canvas>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="incline-level">Tingkat Kemiringan:</label>
+                            <select id="incline-level" onchange="changeInclineLevel()">
+                                <option value="1">Level 1</option>
+                                <option value="2">Level 2</option>
+                                <option value="3">Level 3</option>
+                                <option value="4">Level 4</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="distance-range1">Jarak (cm):</label>
+                            <input type="range" id="distance-range1" min="20" max="100" step="10" value="100" oninput="updateDistance1()">
+                            <span id="distance-value1">100</span> cm
+                        </div>
+                        
+                        <div class="control-group">
+                            <button onclick="startSimulation1()">Mulai</button>
+                            <button onclick="resetSimulation1()">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results">
+                        <h4>Hasil Pengukuran:</h4>
+                        <div class="result-item">
+                            <span>Waktu:</span>
+                            <span id="time1">0.00 s</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Kecepatan Rata-rata:</span>
+                            <span id="velocity1">0.00 cm/s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab2" class="tab-content">
+                <h3>Percobaan Kecepatan dan Percepatan</h3>
+                <p>Simulasi ini menunjukkan percobaan untuk menentukan kecepatan dan percepatan kereta pada jarak yang berbeda.</p>
+                
+                <div class="simulation-container">
+                    <canvas id="simulation-canvas2" width="700" height="400"></canvas>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <label for="incline-level2">Tingkat Kemiringan:</label>
+                            <select id="incline-level2" onchange="changeInclineLevel2()">
+                                <option value="1">Level 1</option>
+                                <option value="2">Level 2</option>
+                                <option value="3">Level 3</option>
+                                <option value="4">Level 4</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="distance-range2">Jarak (cm):</label>
+                            <input type="range" id="distance-range2" min="20" max="100" step="20" value="20" oninput="updateDistance2()">
+                            <span id="distance-value2">20</span> cm
+                        </div>
+                        
+                        <div class="control-group">
+                            <button onclick="startSimulation2()">Mulai</button>
+                            <button onclick="resetSimulation2()">Reset</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results">
+                        <h4>Hasil Pengukuran:</h4>
+                        <div class="result-item">
+                            <span>Jarak:</span>
+                            <span id="distance2">20 cm</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Waktu:</span>
+                            <span id="time2">0.00 s</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Kecepatan Rata-rata:</span>
+                            <span id="velocity2">0.00 cm/s</span>
+                        </div>
+                    </div>
+                    
+                    <div class="data-table">
+                        <h4>Tabel Data Percobaan:</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Jarak (cm)</th>
+                                    <th>Waktu (s)</th>
+                                    <th>Kecepatan Rata-rata (cm/s)</th>
+                                    <th>Percepatan (cm/s²)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>20</td>
+                                    <td id="time-20">-</td>
+                                    <td id="velocity-20">-</td>
+                                    <td id="acceleration-20">-</td>
+                                </tr>
+                                <tr>
+                                    <td>40</td>
+                                    <td id="time-40">-</td>
+                                    <td id="velocity-40">-</td>
+                                    <td id="acceleration-40">-</td>
+                                </tr>
+                                <tr>
+                                    <td>60</td>
+                                    <td id="time-60">-</td>
+                                    <td id="velocity-60">-</td>
+                                    <td id="acceleration-60">-</td>
+                                </tr>
+                                <tr>
+                                    <td>80</td>
+                                    <td id="time-80">-</td>
+                                    <td id="velocity-80">-</td>
+                                    <td id="acceleration-80">-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section id="latihan" class="section">
+            <h2>Latihan Soal</h2>
+            
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    <h3>Soal 1</h3>
+                    <p>Sebuah mobil bergerak dari posisi awal x₁ = 5 m ke posisi akhir x₂ = 25 m dalam waktu 4 detik. Berapakah kecepatan rata-rata mobil tersebut?</p>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="q1" value="a"> a. 4 m/s
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="b"> b. 5 m/s
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="c"> c. 6 m/s
+                        </label>
+                        <label>
+                            <input type="radio" name="q1" value="d"> d. 7 m/s
+                        </label>
+                    </div>
+                    <div id="feedback1" class="quiz-feedback"></div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>Soal 2</h3>
+                    <p>Sebuah benda bergerak dengan kecepatan awal 2 m/s dan kecepatan akhir 8 m/s dalam waktu 3 detik. Berapakah percepatan rata-rata benda tersebut?</p>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="q2" value="a"> a. 1 m/s²
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="b"> b. 2 m/s²
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="c"> c. 3 m/s²
+                        </label>
+                        <label>
+                            <input type="radio" name="q2" value="d"> d. 4 m/s²
+                        </label>
+                    </div>
+                    <div id="feedback2" class="quiz-feedback"></div>
+                </div>
+                
+                <div class="quiz-question">
+                    <h3>Soal 3</h3>
+                    <p>Pada percobaan kecepatan rata-rata, mengapa kecepatan kereta pada tingkat kemiringan tertinggi lebih besar dibandingkan dengan tingkat kemiringan yang lebih rendah?</p>
+                    <div class="quiz-options">
+                        <label>
+                            <input type="radio" name="q3" value="a"> a. Karena massa kereta lebih besar
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="b"> b. Karena komponen gaya berat yang sejajar dengan bidang miring lebih besar
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="c"> c. Karena gaya gesek lebih kecil
+                        </label>
+                        <label>
+                            <input type="radio" name="q3" value="d"> d. Karena jarak tempuh lebih pendek
+                        </label>
+                    </div>
+                    <div id="feedback3" class="quiz-feedback"></div>
+                </div>
+                
+                <button id="check-answers" onclick="checkAnswers()">Periksa Jawaban</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Aplikasi Pembelajaran Fisika. Dikembangkan untuk tujuan pendidikan.</p>
+    </footer>
+    
+    <script src="Script.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
